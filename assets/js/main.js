@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeNavigation();
     initializeAnimations();
     initializeProjectFilter();
-    initializeContactForm();
     initializeScrollEffects();
     initializeTypingEffect();
     initializeCounterAnimation();
@@ -15,8 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===== NAVIGATION =====
 function initializeNavigation() {
     const navbar = document.getElementById('navbar');
-    const navLinks = document.querySelectorAll('.nav-link');
-
+    
     // Navbar scroll effect
     let lastScrollTop = 0;
     window.addEventListener('scroll', () => {
@@ -36,49 +34,6 @@ function initializeNavigation() {
         }
         lastScrollTop = scrollTop;
     });
-
-    // Active section highlighting for simplified navigation
-    const sections = document.querySelectorAll('section[id]');
-    
-    function highlightActiveSection() {
-        const scrollY = window.pageYOffset;
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 150;
-            const sectionBottom = sectionTop + section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-            
-            // Map section IDs to navigation links
-            let navSelector;
-            switch(sectionId) {
-                case 'home':
-                    navSelector = '.nav-link[href="#home"]';
-                    break;
-                case 'projects':
-                    navSelector = '.nav-link[href="#projects"]';
-                    break;
-                case 'athletics':
-                    navSelector = '.nav-link[href="#athletics"]';
-                    break;
-                case 'about':
-                    navSelector = '.nav-link[href="#about"]';
-                    break;
-                case 'contact':
-                    navSelector = '.nav-link[href="#contact"]';
-                    break;
-            }
-            
-            const navLink = document.querySelector(navSelector);
-            
-            if (scrollY >= sectionTop && scrollY < sectionBottom) {
-                navLinks.forEach(link => link.classList.remove('active'));
-                if (navLink) navLink.classList.add('active');
-            }
-        });
-    }
-
-    window.addEventListener('scroll', highlightActiveSection);
-    highlightActiveSection(); // Call on load
 }
 
 // ===== ANIMATIONS =====
@@ -308,81 +263,7 @@ function createProjectCard(project) {
     return card;
 }
 
-// ===== CONTACT FORM =====
-function initializeContactForm() {
-    const contactForm = document.getElementById('contact-form');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            
-            // Validate form
-            if (!validateContactForm(data)) {
-                return;
-            }
-            
-            // Show loading state
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            try {
-                // Simulate form submission (replace with actual endpoint)
-                await simulateFormSubmission(data);
-                
-                // Show success message
-                showNotification('Message sent successfully!', 'success');
-                contactForm.reset();
-            } catch (error) {
-                showNotification('Failed to send message. Please try again.', 'error');
-            } finally {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }
-        });
-    }
-}
-
-function validateContactForm(data) {
-    const errors = [];
-    
-    if (!data.name.trim()) errors.push('Name is required');
-    if (!data.email.trim()) errors.push('Email is required');
-    if (!isValidEmail(data.email)) errors.push('Please enter a valid email');
-    if (!data.subject.trim()) errors.push('Subject is required');
-    if (!data.message.trim()) errors.push('Message is required');
-    
-    if (errors.length > 0) {
-        showNotification(errors.join(', '), 'error');
-        return false;
-    }
-    
-    return true;
-}
-
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-async function simulateFormSubmission(data) {
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // In a real application, you would send this data to your backend
-    console.log('Form submitted with data:', data);
-    
-    // Simulate random success/failure for demo
-    if (Math.random() > 0.1) {
-        return Promise.resolve();
-    } else {
-        return Promise.reject(new Error('Simulated error'));
-    }
-}
+// ===== BACK TO TOP BUTTON =====
 
 // ===== NOTIFICATIONS =====
 function showNotification(message, type = 'info') {
@@ -440,35 +321,17 @@ function showNotification(message, type = 'info') {
 
 // ===== SCROLL EFFECTS =====
 function initializeScrollEffects() {
-    // Parallax effect for hero section
+    // Parallax effect for hero section (only on home page)
     const hero = document.querySelector('.hero');
     
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        if (hero && scrolled < window.innerHeight) {
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
-    });
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            const targetId = link.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            
-            if (targetSection) {
-                const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                const targetPosition = targetSection.offsetTop - navbarHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
+    if (hero) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const maxTranslate = Math.max(0, window.innerHeight - 150); // clamp to avoid overlapping footer
+            const translate = Math.min(scrolled * 0.5, maxTranslate);
+            hero.style.transform = `translateY(${translate}px)`;
         });
-    });
+    }
 }
 
 // ===== BACK TO TOP BUTTON =====

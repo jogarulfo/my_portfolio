@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joseph RIGAL - CS & Athletics Portfolio</title>
-    <meta name="description" content="Computer Science student and track & field athlete portfolio showcasing technical projects and athletic achievements.">
-    <meta name="keywords" content="computer science, track and field, portfolio, software development, athletics">
-
+    <title>Projects - Joseph RIGAL</title>
+    <meta name="description" content="Explore Joseph RIGAL's software development projects - web development, mobile apps, data science, and more.">
+    <meta name="keywords" content="computer science, projects, web development, mobile apps, data science, software development">
+    
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-
+    
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-
+    
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
@@ -27,42 +27,36 @@
                 <a href="index.html">Portfolio</a>
             </div>
             <div class="nav-menu" id="nav-menu">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="projects.html" class="nav-link active">Projects</a>
                 <a href="athletics.html" class="nav-link">Track & Field</a>
                 <a href="about.html" class="nav-link">About Me</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
-            <div class="nav-toggle" id="nav-toggle"></div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="typing-text">Hi, I'm <span class="highlight">Joseph RIGAL</span></span>
-                </h1>
-                <p class="hero-subtitle">Computer Science Student & Track Athlete</p>
-                <p class="hero-description">
-                    Passionate about creating innovative software solutions while pursuing excellence on the track.
-                    Combining analytical thinking from CS with the discipline and determination of competitive athletics.
-                </p>
-                <div class="hero-buttons">
-                    <a href="projects.html" class="btn btn-primary">View My Work</a>
-                    <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
+    <!-- Main Content Container -->
+    <div class="main-content">
+        <!-- Projects Section Window -->
+        <section id="projects" class="section-window">
+            <div class="window-container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-filter">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="web">Web Development</button>
+                    <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+                    <button class="filter-btn" data-filter="data">Data Science</button>
+                    <button class="filter-btn" data-filter="other">Other</button>
+                </div>
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Project cards will be populated by JavaScript -->
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="hero-photo">
-                    <img src="assets/images/profile.jpg" alt="Joseph RIGAL" class="profile-img">
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- Footer with icons-only links -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -82,7 +76,7 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <button class="back-to-top" id="backToTop">
         <i class="fas fa-chevron-up"></i>
     </button>
 
