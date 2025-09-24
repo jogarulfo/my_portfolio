@@ -1,6 +1,7 @@
 // ===== DOM CONTENT LOADED =====
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functions
+    initializeTheme();
     initializeNavigation();
     initializeAnimations();
     initializeProjectFilter();
@@ -34,6 +35,65 @@ function initializeNavigation() {
         }
         lastScrollTop = scrollTop;
     });
+}
+
+// ===== THEME TOGGLE =====
+function initializeTheme() {
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+
+    // Determine initial theme: stored preference > system preference > light
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initial = stored || (prefersDark ? 'dark' : 'light');
+
+    setTheme(initial);
+
+    if (toggle) {
+        updateVisualFromTheme(initial);
+        const handleToggle = () => {
+            const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            const next = current === 'dark' ? 'light' : 'dark';
+            setTheme(next);
+            updateVisualFromTheme(next);
+            localStorage.setItem('theme', next);
+        };
+        toggle.addEventListener('click', handleToggle);
+        toggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleToggle();
+            }
+        });
+    }
+
+    // Listen to system changes if user hasn’t set a preference
+    if (!stored && window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            const next = e.matches ? 'dark' : 'light';
+            setTheme(next);
+            updateToggleIcon(next);
+        });
+    }
+
+    function setTheme(theme) {
+        if (theme === 'dark') {
+            root.setAttribute('data-theme', 'dark');
+        } else {
+            root.removeAttribute('data-theme');
+        }
+    }
+
+    function updateVisualFromTheme(theme) {
+        if (!toggle) return;
+        const isDark = theme === 'dark';
+        // Reflect state for custom toggle visuals on index (tdnn/moon)
+        toggle.classList.toggle('day', !isDark);
+        const knob = toggle.querySelector('.moon');
+        if (knob) knob.classList.toggle('sun', !isDark);
+        toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        // Optional: update footer/back-to-top contrast if needed (handled by CSS vars)
+    }
 }
 
 // ===== ANIMATIONS =====

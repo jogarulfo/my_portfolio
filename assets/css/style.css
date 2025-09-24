@@ -56,6 +56,135 @@
     --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ===== DARK THEME OVERRIDES ===== */
+html[data-theme="dark"] {
+    --text-primary: #e5e7eb;
+    --text-secondary: #9ca3af;
+    --text-light: #9ca3af;
+    --bg-primary: #0f172a; /* slate-900 */
+    --bg-secondary: #111827; /* gray-900 */
+    --bg-card: #0b1220; /* custom dark card */
+    --border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Navbar background in dark mode */
+html[data-theme="dark"] .navbar {
+    background: rgba(17, 24, 39, 0.92);
+    box-shadow: var(--shadow-light);
+}
+
+/* Footer in dark mode stays dark but adjust text color if needed */
+html[data-theme="dark"] .footer-text p {
+    color: var(--text-light);
+}
+
+/* Cards and sections adapt via variables; ensure subtle borders in dark */
+html[data-theme="dark"] .section-window,
+html[data-theme="dark"] .project-card,
+html[data-theme="dark"] .overview-item,
+html[data-theme="dark"] .detail-item,
+html[data-theme="dark"] .stat-item {
+    border: 1px solid var(--border-color);
+}
+
+/* ===== THEME TOGGLE BUTTON ===== */
+:root {
+  --darkbg:#251D29;
+  --darkt: #FFD1F7;
+  --lightbg: #fff;
+  --lightt: #D43370;
+  
+  --toggleHeight: 16em;
+  --toggleWidth: 30em;
+  --toggleBtnRadius: 10em;
+
+  --bgColor--night: #423966;
+  --toggleBtn-bgColor--night: var(--bgColor--night);
+  --mooncolor: #D9FBFF;
+  --bgColor--day: #9ee3fb;
+  --toggleBtn-bgColor--day: var(--bgColor--day);
+}
+
+body{
+  transition: all .2s ease-in-out;
+  background: var(--darkbg);
+  color: var(--darkt);
+  text-align: center;
+}
+.light{
+  background: var(--lightbg);
+  color: var(--lightt);
+}
+.tdnn {
+    /* scale control size via font-size; 15% ~ 40px height */
+    font-size: 10%;
+    position: relative;
+    height: var(--toggleHeight);
+    width: var(--toggleWidth);
+    border-radius: var(--toggleHeight);
+    transition: var(--transition);
+    background: var(--bg-secondary);
+    border: 1.5px solid var(--border-color);
+    display: inline-block;
+    margin: 0 0 0 var(--spacing-md);
+}
+.tdnn.day{
+    background: rgba(37, 99, 235, 0.15);
+    border-color: var(--primary-color);
+}
+.moon {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  transition: all 400ms ease-in-out;
+  
+  top: 3em;
+  left: 3em;
+  transform: rotate(-75deg);
+  width: var(--toggleBtnRadius);
+  height: var(--toggleBtnRadius);
+    /* Make moon body match the toggle track background */
+    background: var(--bg-secondary);
+  box-shadow: 
+    3em 2.5em 0 0em var(--mooncolor) inset,
+    rgba(255, 255, 255, 0.1) 0em -7em 0 -4.5em,
+    rgba(255, 255, 255, 0.1) 3em 7em 0 -4.5em,
+    rgba(255, 255, 255, 0.1) 2em 13em 0 -4em,
+    rgba(255, 255, 255, 0.1) 6em 2em 0 -4.1em,
+    rgba(255, 255, 255, 0.1) 8em 8em 0 -4.5em,
+    rgba(255, 255, 255, 0.1) 6em 13em 0 -4.5em,
+    rgba(255, 255, 255, 0.1) -4em 7em 0 -4.5em,
+    rgba(255, 255, 255, 0.1) -1em 10em 0 -4.5em;
+}
+.sun {
+  top: 4.5em;
+  left: 18em;
+  transform: rotate(0deg);
+  width: 7em;
+  height: 7em;
+    background: var(--accent-color);
+  box-shadow: 3em 3em 0 5em #fff inset,
+    0 -5em 0 -2.7em #fff,
+    3.5em -3.5em 0 -3em #fff,
+    5em 0 0 -2.7em #fff,
+    3.5em 3.5em 0 -3em #fff,
+    0 5em 0 -2.7em #fff,
+    -3.5em 3.5em 0 -3em #fff,
+    -5em 0 0 -2.7em #fff,
+    -3.5em -3.5em 0 -3em #fff;
+}
+
+/* Dark theme specific track/knob adjustments */
+html[data-theme="dark"] .tdnn {
+    background: #0b1220;
+    border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .tdnn .moon {
+    /* Match dark track background so the moon blends with the toggle */
+    background: #0b1220;
+}
+
 /* ===== RESET & BASE STYLES ===== */
 * {
     margin: 0;
@@ -163,6 +292,36 @@ button {
     background: var(--primary-color);
     color: var(--text-white);
     transform: translateY(-2px);
+}
+
+/* Improve secondary button contrast on hero's patterned/gradient background */
+.hero .btn-secondary {
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+    backdrop-filter: saturate(160%) blur(6px);
+    -webkit-backdrop-filter: saturate(160%) blur(6px);
+}
+
+.hero .btn-secondary:hover {
+    background: #ffffff;
+    color: var(--text-primary);
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Dark theme version for hero secondary button */
+html[data-theme="dark"] .hero .btn-secondary {
+    background: rgba(11, 18, 32, 0.9); /* matches var(--bg-card) tone */
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+html[data-theme="dark"] .hero .btn-secondary:hover {
+    background: #0b1220; /* solid dark card */
+    color: var(--text-primary);
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-medium);
 }
 
 .highlight {
