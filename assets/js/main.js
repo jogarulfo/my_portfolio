@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeCounterAnimation();
     initializeBackToTop();
     populateProjects();
+    // Allow transitions after theme set
+    document.documentElement.classList.remove('pre-theme');
 });
 
 // ===== NAVIGATION =====

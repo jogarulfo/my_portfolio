@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joseph RIGAL - CS & Athletics Portfolio</title>
-    <meta name="description" content="Computer Science student and track & field athlete portfolio showcasing technical projects and athletic achievements.">
-    <meta name="keywords" content="computer science, track and field, portfolio, software development, athletics">
+    <title>Joseph RIGAL – Portfolio | AI, Computer Vision & Athletics Portfolio</title>
+    <meta name="description" content="Joseph RIGAL : Computer Science student and track & field athlete portfolio showcasing technical projects and athletic achievements.">
+    <meta name="keywords" content="Joseph RIGAL, computer science, track and field, portfolio, software development, athletics">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
+        <!-- Prevent theme flash -->
+        <script>
+            (function() {
+                try {
+                    var stored = localStorage.getItem('theme');
+                    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    var theme = stored || (prefersDark ? 'dark' : 'light');
+                    if (theme === 'dark') {
+                        document.documentElement.setAttribute('data-theme','dark');
+                    }
+                    // Add a class to suppress transitions until load
+                    document.documentElement.classList.add('pre-theme');
+                } catch(e) {}
+            })();
+        </script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
@@ -60,6 +76,7 @@
             <div class="hero-image">
                 <div class="hero-photo">
                     <img src="assets/images/profile.jpg" alt="Joseph RIGAL" class="profile-img">
+                    <img src="assets/images/profile.jpg" alt="Joseph RIGAL" class="profile-img" loading="lazy">
                 </div>
             </div>
         </div>

@@ -197,6 +197,11 @@ html {
     font-size: 16px;
 }
 
+/* Suppress transitions during initial theme application to prevent flash */
+html.pre-theme *, html.pre-theme *::before, html.pre-theme *::after {
+    transition: none !important;
+}
+
 body {
     font-family: var(--font-family);
     font-size: var(--font-size-base);
