@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===== NAVIGATION =====
 function initializeNavigation() {
     const navbar = document.getElementById('navbar');
+    const navMenu = document.getElementById('nav-menu');
     
     // Navbar scroll effect
     let lastScrollTop = 0;
@@ -37,6 +38,26 @@ function initializeNavigation() {
         }
         lastScrollTop = scrollTop;
     });
+    
+    // Mobile navigation scrolling enhancement
+    if (window.innerWidth <= 768) {
+        const activeLink = navMenu.querySelector('.nav-link.active');
+        if (activeLink) {
+            // Center the active link in view
+            setTimeout(() => {
+                activeLink.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center'
+                });
+            }, 100);
+        }
+    }
+    
+    // Add touch scroll momentum for better mobile experience
+    if (navMenu) {
+        navMenu.style.webkitOverflowScrolling = 'touch';
+    }
 }
 
 // ===== THEME TOGGLE =====

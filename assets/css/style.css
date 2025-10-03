@@ -1308,15 +1308,52 @@ body:has(.hero) .main-content {
     
     .nav-container {
         padding: 0 var(--spacing-md);
+        position: relative;
+    }
+    
+    /* Add fade effect on mobile to indicate scrollability */
+    .nav-container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 20px;
+        height: 100%;
+        background: linear-gradient(to right, transparent, var(--bg-primary));
+        pointer-events: none;
+        z-index: 1;
+    }
+    
+    /* Dark mode fade effect */
+    html[data-theme="dark"] .nav-container::after {
+        background: linear-gradient(to right, transparent, var(--bg-dark));
     }
     
     .nav-menu {
-        gap: var(--spacing-sm); /* Reduce gap on mobile */
+        gap: var(--spacing-sm);
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+        white-space: nowrap;
+        padding: 0 var(--spacing-sm);
+        margin: 0;
+        flex-shrink: 0;
+        max-width: calc(100vw - 200px); /* Leave space for logo */
+    }
+    
+    /* Hide scrollbar for webkit browsers */
+    .nav-menu::-webkit-scrollbar {
+        display: none;
     }
     
     .nav-link {
         font-size: var(--font-size-xs);
         padding: var(--spacing-xs) var(--spacing-sm);
+        flex-shrink: 0;
+        white-space: nowrap;
+        min-width: max-content;
     }
     
     .nav-logo a {
