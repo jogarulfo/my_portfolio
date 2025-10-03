@@ -216,76 +216,13 @@ function initializeProjectFilter() {
 function populateProjects() {
     const projectsData = [
         {
-            title: "E-Commerce Platform",
-            description: "Full-stack web application built with React and Node.js. Features include user authentication, product catalog, shopping cart, and payment integration.",
-            image: "🛒",
-            technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
-            category: "web",
+            title: "Docparser",
+            description: "A document parsing tool that extracts data from PDFs and images converting it in markdown format.",
+            image: "📄",
+            technologies: ["Transformers", "PyTorch", "FastAPI"],
+            category: "Deep Learning",
             github: "https://github.com/yourusername/ecommerce-platform",
             demo: "https://your-ecommerce-demo.com"
-        },
-        {
-            title: "Task Management App",
-            description: "Mobile-first task management application with real-time synchronization. Built using React Native with Firebase backend.",
-            image: "📱",
-            technologies: ["React Native", "Firebase", "Redux", "TypeScript"],
-            category: "mobile",
-            github: "https://github.com/yourusername/task-app",
-            demo: "https://your-task-app-demo.com"
-        },
-        {
-            title: "Data Visualization Dashboard",
-            description: "Interactive dashboard for visualizing complex datasets. Built with Python, D3.js, and featuring machine learning predictions.",
-            image: "📊",
-            technologies: ["Python", "D3.js", "Flask", "Pandas", "Scikit-learn"],
-            category: "data",
-            github: "https://github.com/yourusername/data-dashboard",
-            demo: "https://your-dashboard-demo.com"
-        },
-        {
-            title: "Weather Forecast App",
-            description: "Real-time weather application with geolocation support and 7-day forecasts. Integrates with multiple weather APIs.",
-            image: "🌤️",
-            technologies: ["JavaScript", "HTML5", "CSS3", "Weather API"],
-            category: "web",
-            github: "https://github.com/yourusername/weather-app",
-            demo: "https://your-weather-demo.com"
-        },
-        {
-            title: "Fitness Tracker",
-            description: "Mobile app for tracking workouts and athletic performance. Features GPS tracking, workout analytics, and social sharing.",
-            image: "🏃‍♂️",
-            technologies: ["React Native", "GPS API", "Chart.js", "Firebase"],
-            category: "mobile",
-            github: "https://github.com/yourusername/fitness-tracker",
-            demo: "https://your-fitness-demo.com"
-        },
-        {
-            title: "Algorithm Visualizer",
-            description: "Educational tool for visualizing sorting and pathfinding algorithms. Interactive animations help understand algorithm complexity.",
-            image: "🧮",
-            technologies: ["JavaScript", "Canvas API", "CSS Animations"],
-            category: "other",
-            github: "https://github.com/yourusername/algorithm-visualizer",
-            demo: "https://your-algo-demo.com"
-        },
-        {
-            title: "Chat Application",
-            description: "Real-time messaging application with rooms, file sharing, and emoji support. Built with Socket.io and React.",
-            image: "💬",
-            technologies: ["React", "Socket.io", "Node.js", "MongoDB"],
-            category: "web",
-            github: "https://github.com/yourusername/chat-app",
-            demo: "https://your-chat-demo.com"
-        },
-        {
-            title: "Machine Learning Model",
-            description: "Predictive model for sports performance analysis. Uses historical data to predict race times and training recommendations.",
-            image: "🤖",
-            technologies: ["Python", "TensorFlow", "Jupyter", "NumPy"],
-            category: "data",
-            github: "https://github.com/yourusername/ml-sports-model",
-            demo: "https://your-ml-demo.com"
         }
     ];
 

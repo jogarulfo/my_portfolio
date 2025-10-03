@@ -97,7 +97,68 @@ html[data-theme="dark"] .stat-item {
   --toggleHeight: 16em;
   --toggleWidth: 30em;
   --toggleBtnRadius: 10em;
+}
 
+/* ===== SIMPLE LAYOUT STYLES ===== */
+.simple-section {
+    padding: 4rem 0 2rem;
+    min-height: calc(100vh - 120px);
+}
+
+.simple-section:first-of-type {
+    padding-top: 6rem;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 700;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Mobile Responsive for Simple Layout */
+@media (max-width: 768px) {
+    .simple-section {
+        padding: 2rem 0 1rem;
+    }
+    
+    .simple-section:first-of-type {
+        padding-top: 4rem;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .container {
+        padding: 0 0.5rem;
+    }
+}
+
+/* Additional toggle theme variables */
+:root {
   --bgColor--night: #423966;
   --toggleBtn-bgColor--night: var(--bgColor--night);
   --mooncolor: #D9FBFF;
@@ -600,10 +661,30 @@ body:has(.hero) .main-content {
 
 .contact-links {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: var(--spacing-xl);
-    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    border: 2px solid transparent;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.contact-item i {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    min-width: 20px;
 }
 
 .contact-link {
