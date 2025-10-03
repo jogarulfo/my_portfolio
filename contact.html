@@ -45,11 +45,11 @@
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="projects.html" class="nav-link">Projects</a>
                 <a href="athletics.html" class="nav-link">Track & Field</a>
-                <a href="about.html" class="nav-link">About Me</a>
                 <a href="contact.html" class="nav-link active">Contact</a>
-                <div class="tdnn" id="themeToggle" aria-label="Toggle theme" role="button" tabindex="0">
-                    <div class="moon"></div>
-                </div>
+                
+            </div>
+            <div class="tdnn" id="themeToggle" aria-label="Toggle theme" role="button" tabindex="0">
+                <div class="moon"></div>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span class="bar"></span>
@@ -64,25 +64,60 @@
 
     <!-- Main Content Container -->
     <div class="main-content">
-        <!-- Contact Section Window -->
-        <section id="contact" class="section-window">
-            <div class="window-container">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="contact-subtitle">
-                    Whether you're interested in collaborating on a project, discussing opportunities, or just want to connect — I'd love to hear from you!
-                </p>
-                <div class="contact-links">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>joseph.rigal@etu.ec-lyon.fr</span>
+        <!-- Contact Section -->
+        <section id="contact" class="contact-modern">
+            <div class="contact-container">
+                <div class="contact-content">
+                    <h1 class="contact-title">Get in Touch</h1>
+                    <p class="contact-description">
+                        I'm always open to discussing new projects, opportunities & creative ideas!
+                    </p>
+
+                    <div class="profile-image-container">
+                        <img
+                            src="assets/images/profile.jpg"
+                            alt="Joseph RIGAL"
+                            class="contact-profile-img"
+                        />
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+33 7 69 22 70 34</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Lyon, France</span>
+
+                    <ul class="contact-list">
+                        <li class="contact-list-item">
+                            <i class="fas fa-map-marker-alt contact-icon"></i>
+                            <span class="contact-text">
+                                Lyon/Chambery , France – open to remote or hybrid opportunities
+                            </span>
+                        </li>
+                        <li class="contact-list-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <a
+                                href="mailto:joseph.rigal@etu.ec-lyon.fr"
+                                target="_blank"
+                                class="contact-text">
+                                joseph.rigal@etu.ec-lyon.fr
+                            </a>
+                        </li>
+                        <li class="contact-list-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <a
+                                href="tel:+33619753704"
+                                target="_blank"
+                                class="contact-text"
+                            >
+                                +33 7 69 22 70 34
+                            </a>
+                        </li>
+                        
+                    </ul>
+
+                    <div class="resume-section">
+                        <a
+                            href="assets/files/Joseph_RIGAL_Resume.pdf"
+                            target="_blank"
+                            class="resume-link-modern"
+                        >
+                            → view my resume
+                        </a>
                     </div>
                 </div>
             </div>
@@ -93,6 +128,9 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2024 Joseph RIGAL.</p>
+                </div>
                 <div class="footer-icons">
                     <a href="https://github.com/jogarulfo" target="_blank" rel="noopener" class="footer-icon" aria-label="GitHub">
                         <i class="fab fa-github"></i>
@@ -100,10 +138,11 @@
                     <a href="https://linkedin.com/in/joseph-rigal" target="_blank" rel="noopener" class="footer-icon" aria-label="LinkedIn">
                         <i class="fab fa-linkedin"></i>
                     </a>
+                    <a href="assets/files/Joseph_RIGAL_Resume.pdf" target="_blank" rel="noopener" class="footer-icon" aria-label="Resume">
+                        <i class="fas fa-file-alt"></i> 
+                    </a>
                 </div>
-                <div class="footer-text">
-                    <p>&copy; 2024 Joseph RIGAL.</p>
-                </div>
+                
             </div>
         </div>
     </footer>
