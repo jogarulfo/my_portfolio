@@ -469,15 +469,37 @@ html[data-theme="dark"] .hero .btn-secondary:hover {
 }
 
 .nav-toggle {
-    display: none; /* Hide hamburger menu completely */
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 1001;
 }
 
 .nav-toggle .bar {
-    width: 25px;
+    width: 100%;
     height: 3px;
     background: var(--text-primary);
     border-radius: 2px;
     transition: var(--transition);
+}
+
+/* Hamburger animation */
+.nav-toggle.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.nav-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* ===== HERO SECTION ===== */
@@ -1311,49 +1333,46 @@ body:has(.hero) .main-content {
         position: relative;
     }
     
-    /* Add fade effect on mobile to indicate scrollability */
-    .nav-container::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 20px;
-        height: 100%;
-        background: linear-gradient(to right, transparent, var(--bg-primary));
-        pointer-events: none;
-        z-index: 1;
+    /* Show hamburger menu on mobile */
+    .nav-toggle {
+        display: flex;
     }
     
-    /* Dark mode fade effect */
-    html[data-theme="dark"] .nav-container::after {
-        background: linear-gradient(to right, transparent, var(--bg-dark));
-    }
-    
+    /* Hide navigation menu by default on mobile */
     .nav-menu {
-        gap: var(--spacing-sm);
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE/Edge */
-        white-space: nowrap;
-        padding: 0 var(--spacing-sm);
-        margin: 0;
-        flex-shrink: 0;
-        max-width: calc(100vw - 200px); /* Leave space for logo */
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--bg-primary);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 2rem 0;
+        transition: left 0.3s ease;
+        z-index: 1000;
+        overflow-y: auto;
+        gap: 1rem;
     }
     
-    /* Hide scrollbar for webkit browsers */
-    .nav-menu::-webkit-scrollbar {
-        display: none;
+    /* Show menu when active */
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    /* Dark mode background for mobile menu */
+    html[data-theme="dark"] .nav-menu {
+        background: var(--bg-dark);
     }
     
     .nav-link {
-        font-size: var(--font-size-xs);
-        padding: var(--spacing-xs) var(--spacing-sm);
-        flex-shrink: 0;
-        white-space: nowrap;
-        min-width: max-content;
+        font-size: var(--font-size-lg);
+        padding: var(--spacing-md) var(--spacing-lg);
+        width: 90%;
+        text-align: center;
+        border-radius: var(--border-radius);
+        margin: 0.25rem 0;
     }
     
     .nav-logo a {

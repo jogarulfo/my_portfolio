@@ -18,6 +18,44 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeNavigation() {
     const navbar = document.getElementById('navbar');
     const navMenu = document.getElementById('nav-menu');
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Hamburger menu toggle
+    if (navToggle) {
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+    }
+    
+    // Close menu when clicking on a nav link (mobile)
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+            }
+        });
+    });
+    
+    // Close menu when clicking outside (mobile)
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+            if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+            }
+        }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+        }
+    });
     
     // Navbar scroll effect
     let lastScrollTop = 0;
@@ -38,26 +76,6 @@ function initializeNavigation() {
         }
         lastScrollTop = scrollTop;
     });
-    
-    // Mobile navigation scrolling enhancement
-    if (window.innerWidth <= 768) {
-        const activeLink = navMenu.querySelector('.nav-link.active');
-        if (activeLink) {
-            // Center the active link in view
-            setTimeout(() => {
-                activeLink.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest',
-                    inline: 'center'
-                });
-            }, 100);
-        }
-    }
-    
-    // Add touch scroll momentum for better mobile experience
-    if (navMenu) {
-        navMenu.style.webkitOverflowScrolling = 'touch';
-    }
 }
 
 // ===== THEME TOGGLE =====
