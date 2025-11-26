@@ -1,3 +1,13 @@
+// ===== CONFIGURATION =====
+const CONFIG = {
+    github: {
+        username: 'jogarulfo',
+        maxProjects: 6, // Number of projects to display
+        excludeRepos: [], // Add repo names to exclude, e.g., ['repo-name', 'another-repo']
+        pinRepos: [] // Add repo names to always show first, e.g., ['important-project']
+    }
+};
+
 // ===== DOM CONTENT LOADED =====
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functions
@@ -254,30 +264,188 @@ function initializeProjectFilter() {
 }
 
 // ===== POPULATE PROJECTS =====
-function populateProjects() {
-    const projectsData = [
-        {
-            title: "Docparser",
-            description: "A document parsing tool that extracts data from PDFs and images converting it in markdown format.",
-            image: "📄",
-            technologies: ["Transformers", "PyTorch", "FastAPI"],
-            category: "Deep Learning",
-            github: "https://github.com/yourusername/ecommerce-platform",
-            demo: "https://your-ecommerce-demo.com"
-        }
-    ];
-
+// ===== PROJECTS SECTION =====
+async function populateProjects() {
     const projectsGrid = document.getElementById('projects-grid');
     
-    projectsData.forEach(project => {
-        const projectCard = createProjectCard(project);
-        projectsGrid.appendChild(projectCard);
-    });
+    if (!projectsGrid) return;
+    
+    // Show loading state
+    projectsGrid.innerHTML = '<div class="projects-loading">Loading projects from GitHub...</div>';
+    
+    try {
+        // Fetch repositories from GitHub
+        const response = await fetch(`https://api.github.com/users/${CONFIG.github.username}/repos?sort=updated&per_page=100`);
+        
+        if (!response.ok) {
+            throw new Error('Failed to fetch repositories');
+        }
+        
+        const repos = await response.json();
+        
+        // Filter out excluded repos
+        let filteredRepos = repos.filter(repo => 
+            !repo.fork && 
+            !repo.private && 
+            !CONFIG.github.excludeRepos.includes(repo.name)
+        );
+        
+        // Separate pinned and regular repos
+        const pinnedRepos = filteredRepos.filter(repo => CONFIG.github.pinRepos.includes(repo.name));
+        const regularRepos = filteredRepos.filter(repo => !CONFIG.github.pinRepos.includes(repo.name));
+        
+        // Sort regular repos by stars and update date
+        regularRepos.sort((a, b) => 
+            b.stargazers_count - a.stargazers_count || 
+            new Date(b.updated_at) - new Date(a.updated_at)
+        );
+        
+        // Combine pinned repos first, then regular repos
+        const sortedRepos = [...pinnedRepos, ...regularRepos].slice(0, CONFIG.github.maxProjects);
+        
+        projectsGrid.innerHTML = '';
+        
+        // Fetch README for each repo and create cards
+        for (const repo of sortedRepos) {
+            const projectCard = await createProjectCardFromRepo(repo);
+            projectsGrid.appendChild(projectCard);
+        }
+        
+        if (sortedRepos.length === 0) {
+            projectsGrid.innerHTML = '<p class="no-projects">No public projects found.</p>';
+        }
+        
+    } catch (error) {
+        console.error('Error loading projects:', error);
+        projectsGrid.innerHTML = '<p class="projects-error">Failed to load projects. Please try again later.</p>';
+    }
+}
+
+async function createProjectCardFromRepo(repo) {
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    
+    // Fetch README to extract description
+    let description = repo.description || 'No description available.';
+    let readmeContent = '';
+    
+    try {
+        const readmeResponse = await fetch(`https://api.github.com/repos/${repo.full_name}/readme`, {
+            headers: { 'Accept': 'application/vnd.github.v3+json' }
+        });
+        
+        if (readmeResponse.ok) {
+            const readmeData = await readmeResponse.json();
+            // Decode base64 content
+            const decodedContent = atob(readmeData.content);
+            // Extract first paragraph or first 200 characters
+            readmeContent = extractReadmeSummary(decodedContent);
+            if (readmeContent) {
+                description = readmeContent;
+            }
+        }
+    } catch (error) {
+        console.log(`Could not fetch README for ${repo.name}`);
+    }
+    
+    // Get topics/tags as technologies
+    const technologies = repo.topics && repo.topics.length > 0 
+        ? repo.topics.slice(0, 5) 
+        : [repo.language].filter(Boolean);
+    
+    // Get repository icon (use language or default emoji)
+    const icon = getRepoIcon(repo.language);
+    
+    card.innerHTML = `
+        <div class="project-image">
+            <span style="font-size: 3rem;">${icon}</span>
+        </div>
+        <div class="project-content">
+            <h3 class="project-title">${repo.name.replace(/-/g, ' ').replace(/_/g, ' ')}</h3>
+            <p class="project-description">${description}</p>
+            <div class="project-tech">
+                ${technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+            </div>
+            <div class="project-links">
+                ${repo.homepage ? `
+                    <a href="${repo.homepage}" class="project-link primary" target="_blank" rel="noopener">
+                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    </a>
+                ` : ''}
+                <a href="${repo.html_url}" class="project-link secondary" target="_blank" rel="noopener">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+            </div>
+            <div class="project-stats">
+                <span><i class="fas fa-star"></i> ${repo.stargazers_count}</span>
+                <span><i class="fas fa-code-branch"></i> ${repo.forks_count}</span>
+            </div>
+        </div>
+    `;
+    
+    return card;
+}
+
+function extractReadmeSummary(markdown) {
+    // Remove markdown headers (# ## ###)
+    let text = markdown.replace(/^#+\s+/gm, '');
+    
+    // Remove images
+    text = text.replace(/!\[.*?\]\(.*?\)/g, '');
+    
+    // Remove links but keep text
+    text = text.replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1');
+    
+    // Remove code blocks
+    text = text.replace(/```[\s\S]*?```/g, '');
+    text = text.replace(/`[^`]+`/g, '');
+    
+    // Remove HTML tags
+    text = text.replace(/<[^>]*>/g, '');
+    
+    // Get first meaningful paragraph (skip title/badges)
+    const paragraphs = text.split('\n\n').filter(p => p.trim().length > 50);
+    
+    if (paragraphs.length > 0) {
+        let summary = paragraphs[0].trim();
+        // Limit to ~150 characters
+        if (summary.length > 150) {
+            summary = summary.substring(0, 150).trim() + '...';
+        }
+        return summary;
+    }
+    
+    return '';
+}
+
+function getRepoIcon(language) {
+    const icons = {
+        'JavaScript': '🟨',
+        'TypeScript': '🔷',
+        'Python': '🐍',
+        'Java': '☕',
+        'C++': '⚙️',
+        'C': '⚙️',
+        'Go': '🐹',
+        'Rust': '🦀',
+        'Ruby': '💎',
+        'PHP': '🐘',
+        'HTML': '🌐',
+        'CSS': '🎨',
+        'Swift': '🍎',
+        'Kotlin': '📱',
+        'Dart': '🎯',
+        'Shell': '🐚',
+        'Jupyter Notebook': '📊',
+        'R': '📈'
+    };
+    
+    return icons[language] || '📦';
 }
 
 function createProjectCard(project) {
     const card = document.createElement('div');
-    card.className = `project-card ${project.category}`;
+    card.className = `project-card ${project.category || ''}`;
     
     card.innerHTML = `
         <div class="project-image">

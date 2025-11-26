@@ -1110,6 +1110,123 @@ html[data-theme="dark"] .detail-item p {
     color: rgba(156, 163, 175, 0.9);
 }
 
+/* ===== EXPERIENCE SECTION ===== */
+.experience-category {
+    margin-bottom: 4rem;
+}
+
+.experience-category:last-child {
+    margin-bottom: 2rem;
+}
+
+.experience-category .section-subtitle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.experience-category .section-subtitle::after {
+    display: none; /* Remove the default section-title underline */
+}
+
+.experience-category .section-subtitle i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.experience-category .detail-item {
+    margin-bottom: 1.5rem;
+}
+
+.experience-category .detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.experience-category h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.experience-meta {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.experience-highlights {
+    margin-top: 0.75rem;
+    padding-left: 0;
+    list-style: none;
+}
+
+.experience-highlights li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.experience-highlights li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Dark theme adjustments for experience section */
+html[data-theme="dark"] .experience-category .section-subtitle {
+    color: rgba(229, 231, 235, 0.95);
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+html[data-theme="dark"] .experience-category h3 {
+    color: rgba(229, 231, 235, 0.95);
+}
+
+html[data-theme="dark"] .experience-meta {
+    color: rgba(156, 163, 175, 0.85);
+}
+
+html[data-theme="dark"] .experience-highlights li {
+    color: rgba(156, 163, 175, 0.9);
+}
+
+/* Mobile responsive for experience section */
+@media (max-width: 768px) {
+    .experience-category {
+        margin-bottom: 3rem;
+    }
+    
+    .experience-category .section-subtitle {
+        font-size: 1.5rem;
+    }
+    
+    .experience-category .section-subtitle i {
+        font-size: 1.25rem;
+    }
+    
+    .experience-category h3 {
+        font-size: 1.1rem;
+    }
+    
+    .experience-highlights {
+        padding-left: 0.5rem;
+    }
+}
+
 .about-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1292,6 +1409,57 @@ html[data-theme="dark"] .detail-item p {
 .project-link.secondary:hover {
     background: var(--text-secondary);
     color: var(--text-white);
+}
+
+/* Project stats */
+.project-stats {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.project-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.project-stats i {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+}
+
+/* Projects loading and error states */
+.projects-loading,
+.projects-error,
+.no-projects {
+    text-align: center;
+    padding: var(--spacing-3xl);
+    color: var(--text-secondary);
+    font-size: var(--font-size-lg);
+    grid-column: 1 / -1;
+}
+
+.projects-loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.projects-error {
+    color: var(--error-color);
+}
+
+/* Dark theme for project stats */
+html[data-theme="dark"] .project-stats {
+    border-top-color: rgba(255, 255, 255, 0.1);
 }
 
 /* ===== ATHLETICS SECTION (in window) ===== */
