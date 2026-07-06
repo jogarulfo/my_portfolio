@@ -1,50 +1,42 @@
-# Portfolio Website - CS & Athletics
+# Portfolio Website — Robotics, AI & Athletics
 
+Single-page portfolio for **Joseph RIGAL**, styled after the Mistral
+"Worldwide Hackathon" aesthetic (near-black canvas, cream text, hot-orange
+accent, mono labels, dashed rules — see `wordwide_hackathon.css` for reference).
+
+Everything lives in one scrollable `index.html`; `projects.html`,
+`athletics.html` and `contact.html` are kept as redirect stubs to the matching
+`#anchor` so old links keep working.
 
 ## 📞 Contact
 
-- **Email**: joseph.rigal@etu.ec-lyon.fr
-- **LinkedIn**: [linkedin.com/in/josephrigal](https://www.linkedin.com/in/joseph-rigal-8299192a1/)
+- **Email**: joseph.rigal@etu.ec-lyon.fr · jorigal56@gmail.com
+- **LinkedIn**: [linkedin.com/in/joseph-rigal](https://www.linkedin.com/in/joseph-rigal-8299192a1/)
+- **GitHub**: [github.com/jogarulfo](https://github.com/jogarulfo)
+- **X**: [x.com/jogarulfo](https://x.com/jogarulfo)
 - **Portfolio**: [josephrigal.com](https://josephrigal.com)
 
+## Run locally
 
-## todo_list 
- - add project : 
-   - Hackathon YC paris build winner : won a YC interview ( git : https://github.com/TristanLecourtois/robot-safety-watchdog and X post for precision : This weekend, our team won Paris Builds, a 36-hour selective hackathon by @Unaite
-    , in partnership with @ycombinator
-    .
+```bash
+python3 -m http.server 8000
+# then open http://localhost:8000
+```
 
-    In just 36 hours, we built VIGIE, a robot safety watchdog & harness, an external runtime safety layer for learning-based robots. It watches the robot and its workspace through cameras from the environment, detects dangerous situations, and can pause, hold, and resume a real OpenARM / LeRobot run when the scene becomes unsafe — with a demo harness interfaced with the @LeRobotHF
-    framework. 
+## ✅ Done
 
-    The core idea behind VIGIE is that robot safety should not depend only on the robot policy itself.
+- [x] Restyled to follow the Mistral Worldwide Hackathon look (`wordwide_hackathon.css`)
+- [x] Converted to one scrollable single page with anchor nav + scrollspy
+- [x] Added abstract geometric SVG illustrations (hero orbit, VIGIE scene)
+- [x] Featured project: **VIGIE** — robot safety watchdog, Paris Builds winner (YC × Unaite), earned a YC interview — [repo](https://github.com/TristanLecourtois/robot-safety-watchdog)
+- [x] Project: **LeJunior** — vision-guided pick-and-place on SO-101 (YOLO11 + ACT + state machine) — [repo](https://github.com/jogarulfo/lejunior)
+- [x] Project: **LeSpectrobot** — non-visual perception via a dragonfly vibration sensor / spectrograms on LeRobot — [repo](https://github.com/jogarulfo/lespectrobot)
+- [x] Project (incoming): electromagnet end-effector mod for the SO-101 / LeRobot
+- [x] Project (planned): autonomous bin-picker rover (SO-101 + ROS)
 
-    Today, most robots still operate with little to no external safety harness. The robot executes actions, but there is no independent runtime layer continuously asking:
+## 🔭 Ideas / next
 
-    “Is the current scene still safe?”
-    “Is a human hand entering the workspace?”
-    “Is the robot about to continue an action that became dangerous?”
-
-    We see this as a layered roadmap.
-
-    Huge shoutout to Joseph @Batatasfri13181 , Maelic, Tristan @tristanlecourt
-    and Raph, amazing sprint.
-
-    A very special thank you to Alba @leader_arm
-    for helping us set up the OpenARM.
-
-    Huge thanks as well to @Unaite
-    for organizing the event, and to the mentors, jury members, and partners who pushed us throughout the weekend — including @dessaigne
-    , people from @gs_ai_
-    , @MistralAI
-    , Qube Research & Technologies, and the broader ecosystem around the event.
-
-    Big thanks to Stephenson Harwood Paris for hosting us in central Paris.
-
-    And the cherry on top: winning the hackathon means we earned a YC interview for a chance to join a future batch, which is an incredible opportunity.
-    )
-    - project lejunior : automate box filling and with camera hack  git : https://github.com/jogarulfo/lejunior ( go read the README of the project)
-    - project lespectrobot : wormsensing project git : https://github.com/jogarulfo/lespectrobot Pioneered a proof of concept to unlock non-visual robotic perception by integrating a "dragonfly" vibration sensor into LeRobot to solve tasks impossible with standard cameras, ingeniously routing live spectrograms as "hacked camera" inputs to train robots to identify objects hidden inside opaque boxes.
-    - incoming project : add electro magnet to lerobot library to customize so101
-    - mini autonomous bin picker : rover with so101 to pick crap on my bedroom : learn ROS and lots of robotics features 
- - add style following : https://worldwide-hackathon.mistral.ai/
+- [ ] Ship real illustrations or renders for each project (currently SVG + one photo)
+- [ ] Add a favicon that matches the new dark/orange theme
+- [ ] Wire the electromagnet & bin-picker repos once public
+- [ ] Bundle the Aspekta font if a license is available (currently substituted with Space Grotesk)
