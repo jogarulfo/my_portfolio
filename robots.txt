@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://josephrigal.com/sitemap.xml
+
+# Optional: Block access to certain directories if needed
+# Disallow: /assets/temp/
+# Disallow: /drafts/
+
+# Crawl-delay (optional, in seconds)
+Crawl-delay: 1
