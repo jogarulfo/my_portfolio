@@ -7,28 +7,37 @@
 
 /* ----- Design tokens ----- */
 :root {
-    --background: #111113;
-    --background-soft: #171719;
-    --foreground: #fffaeb;
-    --accent: #232323;
-    --primary: #fa500f;
-    --primary-soft: rgba(250, 80, 15, 0.12);
+    /* "Blueprint Lab" light theme: warm orange accent on a COOL blue-grey
+       ground — the cool ground is what lets the orange pop instead of
+       going muddy against warm cream. Reads as lab blueprint + blue track. */
+    --background: #e9edf2;    /* cool paper (faint blue-grey) */
+    --background-soft: #e0e6ec;
+    --foreground: #12212d;    /* petrol-navy ink */
+    --accent: #cfd7e0;        /* cool mid tone (scrollbar / chips) */
+    --primary: #f2540b;       /* orange — pops on the cool ground */
+    --primary-soft: rgba(242, 84, 11, 0.10);
 
-    /* Mistral-logo warm ramp: yellow → amber → orange → clay-red */
+    /* Mistral-logo warm ramp: yellow → amber → orange → clay-red
+       (kept for the pixel robots + shape fills — warm-on-cool reads great) */
     --yellow: #ffd21e;
     --amber: #ff8a00;
     --orange: #fa500f;
     --red: #e5341a;
     --clay: #c25233;          /* terracotta / clay-robot tone */
     --clay-deep: #8a3a22;
-    --grad-warm: linear-gradient(180deg, #ffd21e 0%, #ffab00 34%, #fa500f 72%, #e5341a 100%);
-    --grad-warm-h: linear-gradient(100deg, #ffd21e 0%, #ff8a00 42%, #fa500f 76%, #e5341a 100%);
-    --grad-btn: linear-gradient(100deg, #ff9a1a 0%, #fa500f 58%, #e5341a 100%);
-    --clay-shadow: rgba(194, 82, 51, 0.45);
-    --muted: rgba(255, 250, 235, 0.55);
-    --muted-2: rgba(255, 250, 235, 0.38);
-    --hairline: rgba(255, 250, 235, 0.14);
-    --hairline-strong: rgba(255, 250, 235, 0.28);
+    /* Vertical ramp for solid shapes keeps most of the ramp… */
+    --grad-warm: linear-gradient(180deg, #ff9a1a 0%, #f2540b 55%, #d1300f 100%);
+    /* …horizontal ramp is used for text clipping — drop the pale yellow
+       so gradient text stays legible on the light ground. */
+    --grad-warm-h: linear-gradient(100deg, #ff7a00 0%, #f2540b 50%, #d1300f 100%);
+    --grad-btn: linear-gradient(100deg, #ff8a1a 0%, #f2540b 58%, #d1300f 100%);
+    /* Cool neutral drop-shadow suits the blueprint ground */
+    --clay-shadow: rgba(18, 33, 45, 0.22);
+    --steel: #5b6b78;
+    --muted: rgba(18, 33, 45, 0.60);
+    --muted-2: rgba(18, 33, 45, 0.40);
+    --hairline: rgba(18, 33, 45, 0.14);
+    --hairline-strong: rgba(18, 33, 45, 0.30);
 
     --font-sans: "Space Grotesk", "Inter", system-ui, sans-serif;
     --font-body: "Inter", system-ui, sans-serif;
@@ -54,7 +63,7 @@ body {
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
     /* Faint dotted grid — a nod to the hackathon layout system */
-    background-image: radial-gradient(rgba(255, 250, 235, 0.035) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(18, 33, 45, 0.06) 1px, transparent 1px);
     background-size: 34px 34px;
 }
 
@@ -151,7 +160,7 @@ ul { list-style: none; }
     transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease), backdrop-filter 0.3s;
 }
 .navbar.scrolled {
-    background: rgba(17, 17, 19, 0.72);
+    background: rgba(233, 237, 242, 0.80);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom-color: var(--hairline);
@@ -261,32 +270,77 @@ ul { list-style: none; }
     z-index: 0;
     pointer-events: none;
 }
-.hero-bg svg { position: absolute; }
-.hero-orbit {
-    top: 50%; right: -8%;
-    width: min(680px, 88vw);
+
+/* ----- Perception field (the "watchdog" backdrop behind the mascot) ----- */
+.perception {
+    position: absolute;
+    top: 50%;
+    right: min(9%, 150px);
+    width: clamp(280px, 32vw, 440px);
+    aspect-ratio: 1;
     transform: translateY(-50%);
-    opacity: 0.45;
+    display: grid;
+    place-items: center;
+    z-index: 1;
+}
+.perception > * { grid-area: 1 / 1; }   /* stack every layer on one another */
+
+/* Slow radar sweep — one soft orange wedge rotating, masked into a disc */
+.radar-sweep {
+    width: 88%; height: 88%;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg,
+        rgba(242,84,11,0.20) 0deg,
+        rgba(242,84,11,0.04) 34deg,
+        transparent 70deg,
+        transparent 360deg);
+    -webkit-mask: radial-gradient(circle, #000 60%, transparent 68%);
+            mask: radial-gradient(circle, #000 60%, transparent 68%);
+    animation: radar 7s linear infinite;
+}
+@keyframes radar { to { transform: rotate(360deg); } }
+
+/* Two concentric rings whose sensor dots ride around as the ring rotates */
+.orbit {
+    border-radius: 50%;
+    border: 1px dashed var(--hairline-strong);
+    position: relative;
+}
+.orbit-a { width: 100%;  height: 100%; animation: orbit-spin 20s linear infinite; }
+.orbit-b { width: 62%;   height: 62%;  border-style: solid; border-color: var(--hairline); animation: orbit-spin 13s linear infinite reverse; }
+.orbit-dot {
+    position: absolute;
+    top: -6px; left: 50%;
+    width: 11px; height: 11px;
+    margin-left: -5.5px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 11px 1px rgba(242,84,11,0.55);
+}
+.orbit-b .orbit-dot { width: 8px; height: 8px; margin-left: -4px; top: -4px; background: var(--amber); box-shadow: 0 0 9px 1px rgba(255,138,0,0.5); }
+@keyframes orbit-spin { to { transform: rotate(360deg); } }
+
+/* Small hub pulse at the centre, right behind the robot */
+.orbit-hub {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 0 0 rgba(242,84,11,0.5);
+    animation: pulse 2.4s infinite;
 }
 
-.px-spark { position: absolute; width: 22px; animation: spark-twinkle 3.4s ease-in-out infinite; }
-.px-spark svg { width: 100%; height: auto; }
-.px-spark.s1 { top: 19%; left: 7%; }
-.px-spark.s2 { bottom: 24%; left: 15%; width: 16px; animation-delay: 0.6s; }
-.px-spark.s3 { top: 33%; right: 33%; width: 14px; opacity: 0.75; animation-delay: 1.2s; }
-.px-spark.s4 { bottom: 30%; right: 12%; width: 12px; opacity: 0.7; animation-delay: 1.8s; }
-@keyframes spark-twinkle {
-    0%, 100% { opacity: 0.35; transform: scale(0.9); }
-    50% { opacity: 1; transform: scale(1.1); }
-}
-@media (prefers-reduced-motion: reduce) { .px-spark { animation: none; } }
 .hero-glow {
     position: absolute;
-    top: 40%; right: 4%;
-    width: 480px; height: 480px;
-    background: radial-gradient(circle, rgba(250,80,15,0.22), transparent 65%);
-    filter: blur(20px);
-    transform: translateY(-50%);
+    top: 50%; right: min(9%, 150px);
+    width: clamp(300px, 34vw, 460px);
+    aspect-ratio: 1;
+    background: radial-gradient(circle, rgba(242,84,11,0.14), transparent 62%);
+    filter: blur(24px);
+    transform: translate(50%, -50%);
+    z-index: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+    .radar-sweep, .orbit-a, .orbit-b { animation: none; }
 }
 .hero-inner { position: relative; z-index: 2; max-width: 860px; }
 .hero-tag {
@@ -524,7 +578,7 @@ ul { list-style: none; }
     padding: 1.8rem;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(180deg, rgba(255,250,235,0.02), transparent);
+    background: linear-gradient(180deg, rgba(255,255,255,0.5), transparent);
     transition: border-color 0.3s var(--ease), transform 0.3s var(--ease), background 0.3s var(--ease);
     position: relative;
     overflow: hidden;
@@ -741,20 +795,17 @@ svg.pixel { shape-rendering: crispEdges; image-rendering: pixelated; display: bl
 .section-head:hover .section-pixel { transform: translateY(-3px) rotate(-3deg); }
 .section-pixel svg { width: 100%; height: 100%; }
 
-/* Clay robot mascot floating in the hero */
+/* Clay robot mascot floating inside the perception field */
 .hero-robot {
-    position: absolute;
-    top: 50%;
-    right: min(14%, 180px);
-    width: clamp(120px, 16vw, 190px);
-    transform: translateY(-50%);
+    position: relative;
+    width: clamp(96px, 12vw, 150px);
     filter: drop-shadow(0 16px 24px var(--clay-shadow));
     animation: robot-float 5s ease-in-out infinite;
-    z-index: 1;
+    z-index: 3;
 }
 @keyframes robot-float {
-    0%, 100% { transform: translateY(-50%); }
-    50% { transform: translateY(calc(-50% - 14px)); }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
 }
 .contact-pixel { width: 60px; height: 60px; margin: 0 auto 1.25rem; }
 .contact-pixel svg { width: 100%; height: 100%; }
@@ -791,7 +842,7 @@ svg.pixel { shape-rendering: crispEdges; image-rendering: pixelated; display: bl
         position: fixed;
         top: var(--nav-h);
         left: 0; right: 0;
-        background: rgba(17,17,19,0.97);
+        background: rgba(233,237,242,0.97);
         backdrop-filter: blur(14px);
         -webkit-backdrop-filter: blur(14px);
         flex-direction: column;

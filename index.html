@@ -54,36 +54,13 @@
     <header id="home" class="hero">
         <div class="hero-bg" aria-hidden="true">
             <div class="hero-glow"></div>
-            <!-- Pixel-dot orbit ring (matches the pixel robots) -->
-            <svg class="hero-orbit pixel" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <!-- outer ring, 12 dots -->
-                <rect x="175" y="95" width="10" height="10" fill="#ffd21e"/>
-                <rect x="164" y="55" width="10" height="10" fill="#ff8a00"/>
-                <rect x="135" y="26" width="10" height="10" fill="#fa500f"/>
-                <rect x="95" y="15" width="10" height="10" fill="#e5341a"/>
-                <rect x="55" y="26" width="10" height="10" fill="#ffd21e"/>
-                <rect x="26" y="55" width="10" height="10" fill="#ff8a00"/>
-                <rect x="15" y="95" width="10" height="10" fill="#fa500f"/>
-                <rect x="26" y="135" width="10" height="10" fill="#e5341a"/>
-                <rect x="55" y="164" width="10" height="10" fill="#ffd21e"/>
-                <rect x="95" y="175" width="10" height="10" fill="#ff8a00"/>
-                <rect x="135" y="164" width="10" height="10" fill="#fa500f"/>
-                <rect x="164" y="135" width="10" height="10" fill="#e5341a"/>
-                <!-- inner ring, 8 dots -->
-                <rect x="142" y="97" width="7" height="7" fill="#ffab00"/>
-                <rect x="129" y="65" width="7" height="7" fill="#fa500f"/>
-                <rect x="97" y="52" width="7" height="7" fill="#ffd21e"/>
-                <rect x="65" y="65" width="7" height="7" fill="#ff8a00"/>
-                <rect x="52" y="97" width="7" height="7" fill="#e5341a"/>
-                <rect x="65" y="129" width="7" height="7" fill="#ffd21e"/>
-                <rect x="97" y="142" width="7" height="7" fill="#fa500f"/>
-                <rect x="129" y="129" width="7" height="7" fill="#ff8a00"/>
-            </svg>
-            <!-- Scattered pixel sparkles -->
-            <span class="px-spark s1"><svg class="pixel" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="0" width="2" height="10" fill="#ffd21e"/><rect x="0" y="4" width="10" height="2" fill="#fa500f"/><rect x="4" y="4" width="2" height="2" fill="#ffab00"/></svg></span>
-            <span class="px-spark s2"><svg class="pixel" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="0" width="2" height="10" fill="#ff8a00"/><rect x="0" y="4" width="10" height="2" fill="#e5341a"/><rect x="4" y="4" width="2" height="2" fill="#ffd21e"/></svg></span>
-            <span class="px-spark s3"><svg class="pixel" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="0" width="2" height="10" fill="#ffab00"/><rect x="0" y="4" width="10" height="2" fill="#fa500f"/></svg></span>
-            <span class="px-spark s4"><svg class="pixel" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="0" width="2" height="8" fill="#ffd21e"/><rect x="0" y="3" width="8" height="2" fill="#ff8a00"/></svg></span>
+            <!-- Perception field: the robot's mascot sits inside a scanning
+                 "watchdog" backdrop — a slow radar sweep + orbiting sensor dots. -->
+            <div class="perception">
+                <div class="radar-sweep"></div>
+                <div class="orbit orbit-a"><span class="orbit-dot"></span></div>
+                <div class="orbit orbit-b"><span class="orbit-dot"></span></div>
+                <span class="orbit-hub"></span>
             <!-- Clay-robot pixel mascot -->
             <svg class="hero-robot pixel" viewBox="0 0 20 24" xmlns="http://www.w3.org/2000/svg">
                 <rect x="9" y="0" width="2" height="1" fill="#ffd21e"/>
@@ -105,21 +82,22 @@
                 <rect x="6" y="19" width="3" height="3" fill="#c25233"/>
                 <rect x="11" y="19" width="3" height="3" fill="#c25233"/>
             </svg>
+            </div><!-- /.perception -->
         </div>
         <div class="container">
             <div class="hero-inner reveal">
-                <span class="hero-tag mono"><span class="dot"></span>Lyon / Chambéry, France — open to opportunities</span>
+                <span class="hero-tag mono"><span class="dot"></span>Paris / Grenoble, France — open to opportunities</span>
                 <h1>Joseph <span class="accent">RIGAL</span></h1>
                 <p class="hero-role">Robotics &amp; Physical-AI Engineer <span class="sep">/</span> Track Athlete</p>
                 <p class="hero-desc">
-                    I build systems that let robots perceive and act safely in the real world — runtime safety layers,
-                    non-visual perception, and vision-guided manipulation on top of LeRobot. Same relentless,
-                    data-driven discipline I bring to the track, from 800m to 10km.
+                    I build systems that let robots perceive and act safely in the real world with different projects: runtime safety layers,
+                    non-visual perception, and vision-guided manipulation. Same relentless,
+                    data-driven discipline I bring as a sportsperson on to the track, from 800m to 10km.
                 </p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary"><i class="fas fa-arrow-down"></i> See my work</a>
                     <a href="#contact" class="btn btn-secondary">Get in touch</a>
-                    <a href="assets/files/Joseph_RIGAL_Resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i> Resume</a>
+                    <a href="assets/files/2026-07-12_Resume_Joseph_RIGAL.pdf" class="btn btn-secondary" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i> Resume</a>
                 </div>
             </div>
         </div>
@@ -154,17 +132,17 @@
                 <div class="about-body reveal">
                     <p class="lead">
                         I'm a final-year engineering student at <strong>École Centrale de Lyon</strong>, specialising in
-                        automation, machine learning and computer vision — with a Master's in Automation.
+                        automation, physical AI and robotics.
                     </p>
                     <p>
-                        My work lives at the intersection of <strong>perception and control</strong>: giving robots the ability
-                        to understand a scene, act on it, and do so safely. Recently I won <strong>Paris Builds</strong>
-                        (a Y Combinator × Unaite hackathon), interned on non-visual robotic perception at Wormsensing,
+                        My work lives at the intersection of <strong>data-science and hardware</strong>: giving robots the ability
+                        to understand a scene, act on it, and do so safely. Recently I won Paris Builds
+                        (a Y Combinator × Unaite hackathon), integrated on non-visual robotic perception at Wormsensing,
                         and sped up a document-AI pipeline 10× at Probayes.
                     </p>
                     <p>
-                        Off the screen, I'm a competitive middle- and long-distance runner. In my first full season I set every
-                        record from 800m to 10km and qualified for the French Cross-Country Championship — the same discipline,
+                        Off the screen, I'm a competitive middle-distance runner. In my first competitive season this year I've set every
+                        personal record from 800m to 10km and qualified for the French Cross-Country Championship, the same discipline,
                         pointed at a different finish line.
                     </p>
 
@@ -186,7 +164,7 @@
                         </div>
                         <div class="fact">
                             <div class="fact-label">Latest</div>
-                            <div class="fact-value">🏆 Paris Builds winner</div>
+                            <div class="fact-value">🏆 Paris Builds Hackathon winner</div>
                             <div class="fact-meta">YC interview earned · 2026</div>
                         </div>
                     </div>
@@ -197,7 +175,6 @@
                         <span class="chip">LeRobot</span>
                         <span class="chip">Computer Vision</span>
                         <span class="chip">Transformers</span>
-                        <span class="chip">YOLO</span>
                         <span class="chip">ROS</span>
                         <span class="chip">Control Systems</span>
                         <span class="chip">C / C++</span>
@@ -213,7 +190,7 @@
             <div class="section-head reveal">
                 <span class="section-index">02</span>
                 <h2 class="section-title">Experience</h2>
-                <span class="section-pixel"><svg class="pixel" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="1" width="2" height="2" fill="#ffd21e"/><rect x="7" y="13" width="2" height="2" fill="#e5341a"/><rect x="1" y="7" width="2" height="2" fill="#ff8a00"/><rect x="13" y="7" width="2" height="2" fill="#fa500f"/><rect x="3" y="3" width="2" height="2" fill="#ffd21e"/><rect x="11" y="3" width="2" height="2" fill="#ff8a00"/><rect x="3" y="11" width="2" height="2" fill="#fa500f"/><rect x="11" y="11" width="2" height="2" fill="#e5341a"/><rect x="4" y="3" width="8" height="2" fill="#ffd21e"/><rect x="3" y="5" width="10" height="3" fill="#ff8a00"/><rect x="3" y="8" width="10" height="3" fill="#fa500f"/><rect x="4" y="11" width="8" height="2" fill="#e5341a"/><rect x="6" y="6" width="4" height="4" fill="#111113"/></svg></span>
+                <span class="section-pixel"><svg class="pixel" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="1" width="2" height="2" fill="#ffd21e"/><rect x="7" y="13" width="2" height="2" fill="#e5341a"/><rect x="1" y="7" width="2" height="2" fill="#ff8a00"/><rect x="13" y="7" width="2" height="2" fill="#fa500f"/><rect x="3" y="3" width="2" height="2" fill="#ffd21e"/><rect x="11" y="3" width="2" height="2" fill="#ff8a00"/><rect x="3" y="11" width="2" height="2" fill="#fa500f"/><rect x="11" y="11" width="2" height="2" fill="#e5341a"/><rect x="4" y="3" width="8" height="2" fill="#ffd21e"/><rect x="3" y="5" width="10" height="3" fill="#ff8a00"/><rect x="3" y="8" width="10" height="3" fill="#fa500f"/><rect x="4" y="11" width="8" height="2" fill="#e5341a"/><rect x="7" y="7" width="2" height="2" fill="#e9edf2"/></svg></span>
                 <p class="section-kicker">Where I've studied, built and taught.</p>
             </div>
 
@@ -224,9 +201,9 @@
                         <div class="timeline-date">April 2026 — Present</div>
                         <h3>R&amp;D Robotics Intern</h3>
                         <div class="org">Wormsensing</div>
-                        <p>Pioneered a proof of concept for non-visual robotic perception: integrated a "dragonfly" vibration sensor into LeRobot and routed live spectrograms as "hacked camera" inputs, training robots to identify objects hidden inside opaque boxes — tasks impossible with standard cameras.</p>
+                        <p>Pioneered a proof of concept for non-visual robotic perception: integrated a "dragonfly" vibration sensor into LeRobot and routed live spectrograms as "hacked camera" inputs, training robots to identify objects hidden inside opaque boxes, tasks impossible with cameras.</p>
                         <ul>
-                            <li>Deep dive into transformer-based policy architectures</li>
+                            <li>Deep dive into tactile sensors: Dragonfly, IMUs, cell-force, strain gauge ...</li>
                             <li>Hands-on analysis of state-of-the-art robot-learning models</li>
                         </ul>
                     </div>
@@ -236,8 +213,8 @@
                         <div class="org">Probayes</div>
                         <p>Engineered a 10× speed-up in PDF-to-Markdown conversion for DocParser by profiling and optimising the critical bottlenecks in a deep-learning document-layout-analysis pipeline.</p>
                         <ul>
-                            <li>Production DL pipeline optimisation</li>
-                            <li>Document layout analysis &amp; OCR</li>
+                            <li>PDF to MD pipeline optimisation</li>
+                            <li>Transformer-based document layout training and optimizing</li>
                         </ul>
                     </div>
                     <div class="timeline-item">
@@ -247,7 +224,6 @@
                         <p>Private mathematics lessons for undergraduate students.</p>
                         <ul>
                             <li>Explaining complex concepts clearly</li>
-                            <li>Adapting to every level of student</li>
                         </ul>
                     </div>
                 </div>
@@ -263,10 +239,16 @@
                         <p>Advanced studies in control systems, robotics and physical AI.</p>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-date">2021 — 2026</div>
+                        <div class="timeline-date">2023 — 2026</div>
                         <h3>General Engineering · CS Specialisation</h3>
                         <div class="org">École Centrale de Lyon</div>
                         <p>Core engineering curriculum (mechanics, fluid dynamics) with a specialisation in machine learning, computer vision and artificial intelligence.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021 — 2023</div>
+                        <h3>Preparatory Class · Math</h3>
+                        <div class="org">Lycée Champollion</div>
+                        <p>Deep dive into advanced fundamental mathematics and physics.</p>
                     </div>
                 </div>
             </div>
@@ -285,7 +267,7 @@
                 <span class="section-pixel"><svg class="pixel" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="13" width="8" height="2" fill="#c25233"/><rect x="6" y="11" width="3" height="2" fill="#8a3a22"/><rect x="5" y="9" width="4" height="2" fill="#ffd21e"/><rect x="6" y="6" width="2" height="3" fill="#fa500f"/><rect x="5" y="4" width="4" height="2" fill="#ffd21e"/><rect x="9" y="4" width="3" height="2" fill="#ff8a00"/><rect x="11" y="4" width="2" height="2" fill="#ffd21e"/><rect x="13" y="3" width="2" height="1" fill="#e5341a"/><rect x="13" y="6" width="2" height="1" fill="#e5341a"/><rect x="13" y="4" width="1" height="2" fill="#fa500f"/></svg></span>
                 -->
 
-                <p class="section-kicker">Robotics, perception and safety — mostly built on and around LeRobot.</p>
+                <p class="section-kicker">Robotics, perception and safety.</p>
             </div>
 
             <div class="projects-grid">
@@ -301,9 +283,9 @@
                             <div class="project-sub">36h hackathon · won a Y Combinator interview</div>
                             <p>
                                 An external runtime safety layer for learning-based robots. VIGIE watches the robot and its
-                                workspace through environment cameras, detects dangerous situations, and can <strong style="color:var(--foreground)">pause, hold and resume</strong>
-                                a real OpenARM / LeRobot run when the scene becomes unsafe — because robot safety shouldn't
-                                depend on the policy alone. Built in 36 hours with a live demo harness interfaced with LeRobot.
+                                workspace through environment cameras, detects dangerous situations, and can pause, hold and resume
+                                any robots run when the scene becomes unsafe. Built because robot safety shouldn't
+                                depend on the policy alone. Built in 36 hours with a live demo harness interfaced with LeRobot and OpenArm.
                             </p>
                             <div class="project-tags">
                                 <span class="tag">Computer Vision</span>
@@ -314,21 +296,21 @@
                             </div>
                             <div class="project-links">
                                 <a class="project-link" href="https://github.com/TristanLecourtois/robot-safety-watchdog" target="_blank" rel="noopener"><i class="fab fa-github"></i> Code</a>
-                                <a class="project-link" href="https://x.com/jogarulfo" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i> The story</a>
+                                <a class="project-link" href="https://x.com/jogarulfo/status/2071601082829062247" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i> The story</a>
                             </div>
                         </div>
                         <div class="project-art" aria-hidden="true">
                             <svg viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="1" y="1" width="318" height="218" rx="10" stroke="#fffaeb" stroke-opacity="0.08"/>
+                                <rect x="1" y="1" width="318" height="218" rx="10" stroke="#1d1a15" stroke-opacity="0.14"/>
                                 <!-- camera cone -->
-                                <path d="M60 40 L60 70 L150 130 L150 90 Z" fill="#fa500f" fill-opacity="0.12" stroke="#fa500f" stroke-opacity="0.5"/>
+                                <path d="M60 40 L60 70 L150 130 L150 90 Z" fill="#fa500f" fill-opacity="0.12" stroke="#fa500f" stroke-opacity="0.6"/>
                                 <circle cx="60" cy="55" r="10" stroke="#fa500f" stroke-width="2"/>
                                 <circle cx="60" cy="55" r="3" fill="#fa500f"/>
                                 <!-- robot arm -->
-                                <path d="M230 190 L230 130 L270 90" stroke="#fffaeb" stroke-opacity="0.6" stroke-width="4" stroke-linecap="round"/>
-                                <circle cx="230" cy="130" r="6" fill="#fffaeb" fill-opacity="0.6"/>
+                                <path d="M230 190 L230 130 L270 90" stroke="#1d1a15" stroke-opacity="0.55" stroke-width="4" stroke-linecap="round"/>
+                                <circle cx="230" cy="130" r="6" fill="#1d1a15" fill-opacity="0.55"/>
                                 <circle cx="270" cy="90" r="8" fill="#fa500f"/>
-                                <rect x="205" y="188" width="50" height="10" rx="3" fill="#fffaeb" fill-opacity="0.3"/>
+                                <rect x="205" y="188" width="50" height="10" rx="3" fill="#1d1a15" fill-opacity="0.28"/>
                                 <!-- scanning target -->
                                 <circle cx="175" cy="120" r="26" stroke="#fa500f" stroke-dasharray="3 5"/>
                                 <path d="M175 100 L175 140 M155 120 L195 120" stroke="#fa500f" stroke-opacity="0.7"/>
@@ -347,14 +329,13 @@
                     <div class="project-sub">Wormsensing · LeSpectrobot</div>
                     <p>
                         Unlocking robotic perception without cameras: a "dragonfly" vibration sensor integrated into LeRobot,
-                        with live spectrograms routed as "hacked camera" inputs. The robot learns to identify objects sealed
-                        inside opaque boxes — impossible with vision alone.
+                        with live spectrograms routed as "hacked camera" inputs. Comparing tactile sensors solutions: dragonfly, accelerometer, cell force, strain gauge ...
                     </p>
                     <div class="project-tags">
                         <span class="tag">LeRobot</span>
                         <span class="tag">Spectrograms</span>
-                        <span class="tag">Sensor Fusion</span>
-                        <span class="tag">PyTorch</span>
+                        <span class="tag">Sensor integrations</span>
+                        <span class="tag">VLA</span>
                     </div>
                     <div class="project-links">
                         <a class="project-link" href="https://github.com/jogarulfo/lespectrobot" target="_blank" rel="noopener"><i class="fab fa-github"></i> Code</a>
@@ -370,15 +351,12 @@
                     <h3>LeJunior — Vision Pick &amp; Place</h3>
                     <div class="project-sub">SO-101 · YOLO11 · ACT policy</div>
                     <p>
-                        A vision-guided pick-and-place pipeline: an SO-101 arm picks grey PVC rings and sorts them into a
-                        4×2 box, slot by slot. A fine-tuned YOLO11 detector feeds a slot grid, an ACT policy runs motor control
-                        at 30 Hz, and a task state machine handles grasp verification, retries and occlusion.
+                        A vision-guided pick-and-place pipeline: commanding a VLA throught visual imput and heuristics to fill different sized boxes (for instance 15*40).
                     </p>
                     <div class="project-tags">
                         <span class="tag">SO-101</span>
                         <span class="tag">YOLO11</span>
                         <span class="tag">ACT Policy</span>
-                        <span class="tag">State Machine</span>
                     </div>
                     <div class="project-links">
                         <a class="project-link" href="https://github.com/jogarulfo/lejunior" target="_blank" rel="noopener"><i class="fab fa-github"></i> Code</a>
@@ -394,13 +372,13 @@
                     <h3>SO-101 Electromagnet Mod</h3>
                     <div class="project-sub">Custom end-effector</div>
                     <p>
-                        Extending the LeRobot library with an electromagnet end-effector to customise the SO-101 arm —
-                        adding magnetic grasping to the toolkit and integrating it cleanly into the control stack.
+                        Extending the LeRobot library with an electromagnet end-effector to customise the SO-101 arm.
+                        Adding magnetic grasping to the toolkit and integrating it cleanly into Lerobot control stack.
                     </p>
                     <div class="project-tags">
                         <span class="tag">LeRobot</span>
                         <span class="tag">Hardware</span>
-                        <span class="tag">End-effector</span>
+                        <span class="tag">Electro-magnet</span>
                     </div>
                 </article>
 
@@ -413,7 +391,7 @@
                     <h3>Autonomous Bin-Picker Rover</h3>
                     <div class="project-sub">Mobile manipulation · ROS</div>
                     <p>
-                        A mobile rover paired with an SO-101 arm to autonomously find and pick up clutter around my room —
+                        A mobile rover paired with an SO-101 arm to autonomously find and pick up clutter around my room,
                         a hands-on path into ROS, navigation and full-stack mobile manipulation.
                     </p>
                     <div class="project-tags">
@@ -456,9 +434,8 @@
                     <ul class="achievements">
                         <li>165th at the French Cross-Country Championship <span>(2026)</span></li>
                         <li>Dropped my 10km from 32:02 to 30:45 <span>(+1'17" in eight months)</span></li>
-                        <li>1500m from 3:59 to 3:52 <span>in a single year</span></li>
-                        <li>5km debut in 15:08 <span>— on a course with 33m of climbing; sub-15 is a matter of time</span></li>
-                        <li>85th at the French 10km Road Championship <span>(2025)</span></li>
+                        <li>1500m from 3:59 to 3:52 <span>in a single year (ranked 336 overall in the 2026 season)</span></li>
+                        <li>5km debut in 15:08 
                     </ul>
                 </div>
                 <div class="ath-block reveal">
@@ -472,7 +449,7 @@
                         <div class="timeline-item">
                             <div class="timeline-date">Jan 2026 — May 2026</div>
                             <h3 style="font-family:var(--font-sans);font-size:1.1rem;color:var(--foreground);text-transform:none;letter-spacing:normal;margin:0 0 .3rem;">Cross-country season</h3>
-                            <p>First-ever cross season — qualified for the French Championship, finishing 165th.</p>
+                            <p>First-ever cross season, I qualified for the French Championship in my first year, finishing 162 out of 352 qualified.</p>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-date">Sep 2025 — Jan 2026</div>
@@ -501,20 +478,19 @@
             <div class="section-head reveal">
                 <span class="section-index">05</span>
                 <h2 class="section-title">Contact</h2>
-                <span class="section-pixel"><svg class="pixel" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="1" width="8" height="7" fill="#fffaeb"/><rect x="5" y="3" width="6" height="1" fill="#c25233"/><rect x="5" y="5" width="4" height="1" fill="#c25233"/><rect x="2" y="7" width="12" height="7" fill="#ff8a00"/><rect x="2" y="7" width="12" height="1" fill="#ffd21e"/><rect x="2" y="13" width="12" height="1" fill="#e5341a"/><rect x="2" y="7" width="1" height="7" fill="#e5341a"/><rect x="13" y="7" width="1" height="7" fill="#e5341a"/><rect x="2" y="7" width="2" height="1" fill="#fa500f"/><rect x="4" y="8" width="2" height="1" fill="#fa500f"/><rect x="6" y="9" width="4" height="1" fill="#ffd21e"/><rect x="10" y="8" width="2" height="1" fill="#fa500f"/><rect x="12" y="7" width="2" height="1" fill="#fa500f"/></svg></span>
+                <span class="section-pixel"><svg class="pixel" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="1" width="8" height="7" fill="#fffaeb"></rect><rect x="5" y="3" width="6" height="1" fill="#c25233"></rect><rect x="5" y="5" width="4" height="1" fill="#c25233"></rect><rect x="2" y="7" width="12" height="7" fill="#ff8a00"></rect><rect x="2" y="7" width="12" height="1" fill="#ffd21e"></rect><rect x="2" y="13" width="12" height="1" fill="#e5341a"></rect><rect x="2" y="7" width="1" height="7" fill="#e5341a"></rect><rect x="13" y="7" width="1" height="7" fill="#e5341a"></rect><rect x="2" y="7" width="2" height="1" fill="#fa500f"></rect><rect x="4" y="8" width="2" height="1" fill="#fa500f"></rect><rect x="6" y="9" width="4" height="1" fill="#ffd21e"></rect><rect x="10" y="8" width="2" height="1" fill="#fa500f"></rect><rect x="12" y="7" width="2" height="1" fill="#fa500f"></rect>
             </div>
             <div class="contact-wrap reveal">
-                <h2>Let's build something<br><span class="accent">real.</span></h2>
-                <p>Open to robotics / AI roles, collaborations and hard problems. Reach out — I answer fast.</p>
+                <h2>Let's build together,<br><span class="accent">new ideas?</span></h2>
+                <p>Open to robotics, AI roles, collaborations and hard problems. Reach out, I'm looking forward hearing your ideas.</p>
                 <div class="contact-emails">
                     <a class="contact-email" href="mailto:joseph.rigal@etu.ec-lyon.fr"><i class="fas fa-envelope"></i> joseph.rigal@etu.ec-lyon.fr</a>
-                    <a class="contact-email" href="mailto:jorigal56@gmail.com"><i class="fas fa-paper-plane"></i> jorigal56@gmail.com</a>
                 </div>
                 <div class="contact-socials">
                     <a class="social-btn" href="https://github.com/jogarulfo" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     <a class="social-btn" href="https://www.linkedin.com/in/joseph-rigal-8299192a1/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     <a class="social-btn" href="https://x.com/jogarulfo" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
-                    <a class="social-btn" href="assets/files/Joseph_RIGAL_Resume.pdf" target="_blank" rel="noopener" aria-label="Resume"><i class="fas fa-file-alt"></i></a>
+                    <a class="social-btn" href="assets/files/2026-07-12_Resume_Joseph_RIGAL.pdf" target="_blank" rel="noopener" aria-label="Resume"><i class="fas fa-file-alt"></i></a>
                 </div>
             </div>
         </div>
@@ -524,7 +500,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>© 2026 Joseph RIGAL — built with LeRobot energy.</p>
+                <p>© 2026 Joseph RIGAL — hardware is hard ... and that's what I love.</p>
                 <div class="footer-icons">
                     <a class="footer-icon" href="https://github.com/jogarulfo" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     <a class="footer-icon" href="https://www.linkedin.com/in/joseph-rigal-8299192a1/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
