@@ -565,6 +565,48 @@ ul { list-style: none; }
 .timeline-item ul li::before { content: "→"; position: absolute; left: 0; color: var(--primary); }
 
 /* =========================================================================
+   Publication
+   ========================================================================= */
+.pub-list { list-style: none; max-width: 860px; }
+.pub-item {
+    padding: 1.4rem 0;
+    border-bottom: 1px dashed var(--hairline-strong);
+}
+.pub-item:first-child { padding-top: 0; }
+.pub-title {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--foreground);
+    margin-bottom: 0.45rem;
+}
+.pub-year {
+    display: inline-block;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    padding: 0.05rem 0.4rem;
+    margin-right: 0.35rem;
+    background: var(--grad-warm-h);
+    color: #fff;
+    border-radius: 3px;
+    vertical-align: 0.12em;
+}
+.pub-links a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s var(--ease);
+}
+.pub-links a:hover { color: var(--primary); }
+.pub-authors, .pub-venue {
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    line-height: 1.6;
+    color: var(--muted);
+}
+.pub-authors strong { color: var(--primary); font-weight: 700; }
+
+/* =========================================================================
    Projects
    ========================================================================= */
 .projects-grid {
@@ -585,6 +627,8 @@ ul { list-style: none; }
 }
 .project-card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 22px 46px -26px var(--clay-shadow); }
 .project-card.featured { grid-column: 1 / -1; }
+/* An odd card left alone on the last row takes the full width */
+.project-card:last-child:nth-child(even) { grid-column: 1 / -1; }
 .project-card.featured .project-inner { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: center; }
 .project-card.featured .project-body { display: flex; flex-direction: column; }
 
