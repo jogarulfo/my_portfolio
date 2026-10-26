@@ -505,6 +505,29 @@ ul { list-style: none; }
 }
 .chip:hover { color: var(--foreground); border-color: var(--primary); }
 
+/* "Next up": compact list of projects still being built */
+.next-up {
+    margin-top: 1.5rem;
+    border: 1px dashed var(--hairline);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.8rem;
+}
+.next-up-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+.next-up-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 2.5rem; }
+.next-up-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.75rem; }
+.next-up-name { font-family: var(--font-sans); font-weight: 600; font-size: 1.05rem; color: var(--foreground); }
+.next-up-list p { flex-basis: 100%; color: var(--muted); font-size: 0.92rem; }
+@media (max-width: 768px) {
+    .next-up-list { grid-template-columns: 1fr; }
+}
+
 /* =========================================================================
    Experience timeline
    ========================================================================= */
@@ -734,6 +757,25 @@ ul { list-style: none; }
 }
 .achievements li::before { content: "▹"; position: absolute; left: 0; color: var(--primary); }
 .achievements li span { color: var(--muted); }
+
+/* Season titles inside the athletics timeline */
+.ath-block .timeline-item h3.season-title {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    color: var(--foreground);
+    text-transform: none;
+    letter-spacing: normal;
+    margin: 0 0 0.3rem;
+}
+
+/* Inline links inside timeline bullets (e.g. arXiv) */
+.timeline-item li a {
+    color: var(--foreground);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s var(--ease);
+}
+.timeline-item li a:hover { color: var(--primary); }
 
 /* =========================================================================
    Contact
